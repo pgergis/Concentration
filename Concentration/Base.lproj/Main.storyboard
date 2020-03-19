@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7hU-BR-juJ">
-                                <rect key="frame" x="20" y="44" width="335" height="392"/>
+                                <rect key="frame" x="20" y="215" width="335" height="392"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8qa-uO-XKQ">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="72"/>
@@ -207,35 +207,54 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Flips: 0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkE-Q3-Ciw">
-                                <rect key="frame" x="111.66666666666669" y="720.33333333333337" width="152" height="57.666666666666629"/>
-                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <rect key="frame" x="141.66666666666666" y="744" width="92" height="34"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yl-6M-3Hc">
-                                <rect key="frame" x="164.66666666666666" y="698" width="46" height="30"/>
-                                <state key="normal" title="RESET"/>
+                                <rect key="frame" x="138.66666666666666" y="692" width="98" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Reset"/>
                                 <connections>
                                     <action selector="resetGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pgE-mx-K59"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Concentration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hD2-Ly-Tju">
+                                <rect key="frame" x="66" y="44" width="243" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-Q4-C2b">
+                                <rect key="frame" x="175.33333333333334" y="92" width="24.666666666666657" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="gj0-Q4-C2b" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5UR-Ud-egA"/>
                             <constraint firstItem="7hU-BR-juJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="8Kw-0N-liT"/>
+                            <constraint firstItem="hD2-Ly-Tju" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8ma-ro-OOT"/>
                             <constraint firstItem="FkE-Q3-Ciw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Lqd-xJ-ri5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7hU-BR-juJ" secondAttribute="trailing" constant="20" id="MvG-VP-slV"/>
-                            <constraint firstItem="FkE-Q3-Ciw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7hU-BR-juJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Not-F0-a5t"/>
                             <constraint firstItem="4yl-6M-3Hc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UEe-Y0-qbG"/>
-                            <constraint firstItem="7hU-BR-juJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="VSW-ib-GFO"/>
+                            <constraint firstItem="7hU-BR-juJ" firstAttribute="firstBaseline" secondItem="gj0-Q4-C2b" secondAttribute="baseline" constant="60" symbolType="layoutAnchor" id="XKZ-vP-1FM"/>
                             <constraint firstItem="FkE-Q3-Ciw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Yu4-Rc-tJh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FkE-Q3-Ciw" secondAttribute="bottom" id="cdm-mi-4hd"/>
                             <constraint firstItem="FkE-Q3-Ciw" firstAttribute="firstBaseline" secondItem="4yl-6M-3Hc" secondAttribute="baseline" constant="44" symbolType="layoutAnchor" id="gx3-6B-x3p"/>
+                            <constraint firstItem="hD2-Ly-Tju" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="no5-LI-6sw"/>
+                            <constraint firstItem="7hU-BR-juJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qp9-AX-La4"/>
+                            <constraint firstItem="gj0-Q4-C2b" firstAttribute="firstBaseline" secondItem="hD2-Ly-Tju" secondAttribute="baseline" constant="48" symbolType="layoutAnchor" id="wAy-sI-bJS"/>
+                            <constraint firstItem="7hU-BR-juJ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="yyr-Vk-bLt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="FkE-Q3-Ciw" id="TDx-eR-re1"/>
+                        <outlet property="scoreLabel" destination="gj0-Q4-C2b" id="glX-nO-OZr"/>
                         <outletCollection property="cardButtons" destination="NpW-1J-H2S" collectionClass="NSMutableArray" id="RSA-yA-NXg"/>
                         <outletCollection property="cardButtons" destination="6ze-Pn-rYw" collectionClass="NSMutableArray" id="sBh-MJ-cKc"/>
                         <outletCollection property="cardButtons" destination="r8B-QP-w74" collectionClass="NSMutableArray" id="urq-kN-oDL"/>
@@ -260,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+            <point key="canvasLocation" x="136.80000000000001" y="137.4384236453202"/>
         </scene>
     </scenes>
 </document>

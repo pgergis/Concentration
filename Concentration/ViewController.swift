@@ -11,35 +11,51 @@ import UIKit
 class ViewController: UIViewController {
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     private var themeEmoji = "🎃👻🦇🙀😱😈🍭🍬🍎🧟‍♂️"
-    
+
     var numberOfPairsOfCards: Int {
         return (cardButtons.count + 1) / 2
     }
     
-    private(set) var flipCount = 0 {
-        didSet { updateFlipCountLabel() }
+  
+    @IBOutlet private weak var flipCountLabel: UITextField!
+    @IBOutlet private weak var scoreLabel: UILabel! {
+        didSet { updateScoreLabel() }
     }
     
     private func updateFlipCountLabel() {
+          flipCountLabel.text = "Flips: \(game.totalFlipCount)"
+      }
+      
+    private func updateScoreLabel() {
         let attributes: [NSAttributedString.Key:Any] = [
             .strokeWidth: 5.0,
             .strokeColor: UIColor.systemOrange
         ]
-        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
-        flipCountLabel.attributedText = attributedString
+        let attributedString = NSAttributedString(string: "\(game.score)", attributes: attributes)
+        scoreLabel.attributedText = attributedString
     }
     
-    @IBOutlet private weak var flipCountLabel: UITextField! {
-        didSet {
-            updateFlipCountLabel()
-        }
+    @IBOutlet private var cardButtons: [UIButton]! {
+        didSet { updateCardFaces() }
     }
     
-    @IBOutlet private var cardButtons: [UIButton]!
+    private func updateCardFaces() {
+        for index in cardButtons.indices {
+           let button = cardButtons[index]
+           let card = game.cards[index]
+           if card.isFaceUp {
+               button.setTitle(emoji(for: card), for: UIControl.State.normal)
+               button.backgroundColor = UIColor.systemFill
+           } else {
+               button.setTitle("", for: UIControl.State.normal)
+               button.backgroundColor = card.isMatched ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 0) : UIColor.systemOrange
+           }
+       }
+    }
     
     @IBAction private func touchCard(_ sender: UIButton) {
         if let cardNumber = cardButtons.firstIndex(of: sender) {
-            game.chooseCard(at: cardNumber) ? flipCount += 1 : nil
+            game.chooseCard(at: cardNumber)
             updateViewFromModel()
         } else {
             print("chosen card was not in cardButtons")
@@ -47,17 +63,9 @@ class ViewController: UIViewController {
     }
     
     private func updateViewFromModel() {
-        for index in cardButtons.indices {
-            let button = cardButtons[index]
-            let card = game.cards[index]
-            if card.isFaceUp {
-                button.setTitle(emoji(for: card), for: UIControl.State.normal)
-                button.backgroundColor = UIColor.systemFill
-            } else {
-                button.setTitle("", for: UIControl.State.normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 0) : UIColor.systemOrange
-            }
-        }
+        updateCardFaces()
+        updateScoreLabel()
+        updateFlipCountLabel()
     }
 
     private lazy var emojiChoices = themeEmoji
@@ -72,7 +80,6 @@ class ViewController: UIViewController {
     
     @IBAction private func resetGame(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
-        flipCount = 0
         emojiChoices = themeEmoji
         
         updateViewFromModel()

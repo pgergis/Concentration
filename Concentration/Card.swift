@@ -11,6 +11,7 @@ import Foundation
 struct Card: Hashable {
     var isFaceUp = false
     var isMatched = false
+    var flipCount = 0
     private var identifier: Int
     
     func hash(into hasher: inout Hasher) { hasher.combine(identifier) }
@@ -28,7 +29,4 @@ struct Card: Hashable {
     init() {
         self.identifier = Card.getUniqueIdentifer()
     }
-    
-    // TODO: shuffle cards
-    
 }
