@@ -36,7 +36,13 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet private var cardButtons: [UIButton]! {
-        didSet { updateCardFaces() }
+        didSet {
+            for card in cardButtons {
+                card.layer.cornerRadius = 8.0
+            }
+            updateCardFaces()
+            
+        }
     }
     
     private func updateCardFaces() {
