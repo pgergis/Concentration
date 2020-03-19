@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    private var themeEmoji = "🎃👻🦇🙀😱😈🍭🍬🍎🧟‍♂️"
     
     var numberOfPairsOfCards: Int {
         return (cardButtons.count + 1) / 2
@@ -37,9 +38,8 @@ class ViewController: UIViewController {
     @IBOutlet private var cardButtons: [UIButton]!
     
     @IBAction private func touchCard(_ sender: UIButton) {
-        flipCount += 1
         if let cardNumber = cardButtons.firstIndex(of: sender) {
-            game.chooseCard(at: cardNumber)
+            game.chooseCard(at: cardNumber) ? flipCount += 1 : nil
             updateViewFromModel()
         } else {
             print("chosen card was not in cardButtons")
@@ -60,16 +60,22 @@ class ViewController: UIViewController {
         }
     }
 
-    private var emojiChoices = "🎃👻🦇🙀😱😈🍭🍬🍎"
-    
+    private lazy var emojiChoices = themeEmoji
     private var emoji = [Card:String]()
-
     private func emoji(for card: Card) -> String {
         if emoji[card] == nil, emojiChoices.count > 0 {
             let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
             emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
         }
         return emoji[card] ?? "?"
+    }
+    
+    @IBAction private func resetGame(_ sender: UIButton) {
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        flipCount = 0
+        emojiChoices = themeEmoji
+        
+        updateViewFromModel()
     }
 }
 

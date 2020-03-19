@@ -29,22 +29,26 @@ struct Concentration {
             let card = Card()
             cards += [card, card]  // copied because struct
         }
+        
+        cards = cards.shuffled()
     }
     
-    mutating func chooseCard(at index: Int) {
+    mutating func chooseCard(at index: Int) -> Bool {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in the cards")
-        if !cards[index].isMatched {
-            if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
-                // check if cards match
-                if cards[matchIndex] == cards[index] {
-                    cards[matchIndex].isMatched = true
-                    cards[index].isMatched = true
-                }
-                cards[index].isFaceUp = true
-            } else {
-                indexOfOneAndOnlyFaceUpCard = index
+        
+        if index == indexOfOneAndOnlyFaceUpCard || cards[index].isMatched { return false }
+        
+        if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
+            if cards[matchIndex] == cards[index] {
+                cards[matchIndex].isMatched = true
+                cards[index].isMatched = true
             }
+            cards[index].isFaceUp = true
+        } else {
+            indexOfOneAndOnlyFaceUpCard = index
         }
+        
+        return true
     }
 }
 
